@@ -2,6 +2,7 @@ package jrml.supinternet.com.jeredecouvremalangue.singleWordFeature
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import jrml.supinternet.com.jeredecouvremalangue.R
 
 class SingleWordActivity : AppCompatActivity() {
@@ -23,6 +24,10 @@ class SingleWordActivity : AppCompatActivity() {
     }
 
     private fun updateView(){
+        val nameText: TextView = findViewById(R.id.name) as TextView
+        val descriptionText: TextView = findViewById(R.id.description) as TextView
+        nameText.text = word!!.name
+        descriptionText.text = word!!.description
 
     }
 }
