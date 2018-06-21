@@ -23,7 +23,7 @@ class SingleWordActivity : AppCompatActivity() {
         this.setRecyclerView()
         this.updateView()
         this.setListener()
-        descriptionText?.visibility = View.GONE
+        citationView?.visibility = View.GONE
     }
 
     private fun setWord() {
@@ -54,7 +54,7 @@ class SingleWordActivity : AppCompatActivity() {
         val arrayString = this.word?.citation
 
         // specify an adapter (see also next example)
-        val mAdapter = CitationAdapter(arrayString)
+        val mAdapter = CitationAdapter(arrayString?.toTypedArray())
         mRecyclerView?.setAdapter(mAdapter)
     }
 
@@ -67,9 +67,9 @@ class SingleWordActivity : AppCompatActivity() {
         val showCitation = findViewById<TextView>(R.id.some_citation_link)
         showCitation.setOnClickListener { _ ->
             if (citationDisplayed){
-                descriptionText?.visibility = View.GONE
+                citationView?.visibility = View.GONE
             }else{
-                descriptionText?.visibility = View.VISIBLE
+                citationView?.visibility = View.VISIBLE
             }
             citationDisplayed = !citationDisplayed
         }

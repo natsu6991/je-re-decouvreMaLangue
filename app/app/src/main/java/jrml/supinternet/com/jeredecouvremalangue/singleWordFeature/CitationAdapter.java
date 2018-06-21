@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import jrml.supinternet.com.jeredecouvremalangue.R;
+
 public class CitationAdapter extends RecyclerView.Adapter<CitationAdapter.ViewHolder> {
     private String[] mDataset;
 
@@ -14,10 +16,10 @@ public class CitationAdapter extends RecyclerView.Adapter<CitationAdapter.ViewHo
     // you provide access to all the views for a data item in a view holder
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView mTextView;
+        public TextView citationText;
         public ViewHolder(View v) {
             super(v);
-            mTextView = (TextView)v.findViewById(R.id.textContent);
+            citationText = (TextView)v.findViewById(R.id.citationText);
         }
     }
 
@@ -28,11 +30,11 @@ public class CitationAdapter extends RecyclerView.Adapter<CitationAdapter.ViewHo
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
+    public CitationAdapter.ViewHolder onCreateViewHolder(ViewGroup parent,
                                                    int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.my_text_view, parent, false);
+                .inflate(R.layout.my_citation_view, parent, false);
         // set the view's size, margins, paddings and layout parameters
         ViewHolder vh = new ViewHolder(v);
         return vh;
@@ -43,16 +45,16 @@ public class CitationAdapter extends RecyclerView.Adapter<CitationAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.mTextView.setText(mDataset[position]);
+        holder.citationText.setText("● "+mDataset[position]);
 
         // implement setOnClickListener event on item view.
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // display a toast with person name on item click
                 clickListener.handle(view, mDataset[position]);
             }
-        });
+        });*/
 
 //        int resId = R.anim.item_animation_fall_down;
 //        Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), resId);
