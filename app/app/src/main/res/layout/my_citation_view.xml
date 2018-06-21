@@ -13,6 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/citationText"
+        android:textStyle="italic"
+        android:layout_marginStart="@dimen/citationMargin"
         android:textColor="@color/citationColor">
 
     </TextView>
