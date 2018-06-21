@@ -10,6 +10,7 @@ import jrml.supinternet.com.jeredecouvremalangue.R;
 
 public class CitationAdapter extends RecyclerView.Adapter<CitationAdapter.ViewHolder> {
     private String[] mDataset;
+    private String mCitationTextPlacholder;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -19,13 +20,14 @@ public class CitationAdapter extends RecyclerView.Adapter<CitationAdapter.ViewHo
         public TextView citationText;
         public ViewHolder(View v) {
             super(v);
-            citationText = (TextView)v.findViewById(R.id.citationText);
+            citationText = v.findViewById(R.id.citationText);
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public CitationAdapter(String[] myDataset) {
+    public CitationAdapter(String[] myDataset, String citationTextPlaceholder) {
         mDataset = myDataset;
+        mCitationTextPlacholder = citationTextPlaceholder;
     }
 
     // Create new views (invoked by the layout manager)
@@ -36,8 +38,7 @@ public class CitationAdapter extends RecyclerView.Adapter<CitationAdapter.ViewHo
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.my_citation_view, parent, false);
         // set the view's size, margins, paddings and layout parameters
-        ViewHolder vh = new ViewHolder(v);
-        return vh;
+        return new ViewHolder(v);
     }
 
     // Replace the contents of a view (invoked by the layout manager)
@@ -45,20 +46,7 @@ public class CitationAdapter extends RecyclerView.Adapter<CitationAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.citationText.setText("● "+mDataset[position]);
-
-        // implement setOnClickListener event on item view.
-        /*holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // display a toast with person name on item click
-                clickListener.handle(view, mDataset[position]);
-            }
-        });*/
-
-//        int resId = R.anim.item_animation_fall_down;
-//        Animation animation = AnimationUtils.loadAnimation(holder.itemView.getContext(), resId);
-//        holder.itemView.setAnimation(animation);
+        holder.citationText.setText(String.format(mCitationTextPlacholder, mDataset[position]));
     }
 
     // Return the size of your dataset (invoked by the layout manager)
@@ -66,9 +54,4 @@ public class CitationAdapter extends RecyclerView.Adapter<CitationAdapter.ViewHo
     public int getItemCount() {
         return mDataset.length;
     }
-
-    public interface OnViewClickedListener{
-        public void handle(View view, String clickedElemData);
-    }
-    //créer interface
 }

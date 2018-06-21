@@ -3,4 +3,5 @@
     <string name="name">name</string>
     <string name="description">description</string>
     <string name="some_citation">Quelques citations?</string>
+    <string name="citation_text">● %1$s</string>
 </resources>
