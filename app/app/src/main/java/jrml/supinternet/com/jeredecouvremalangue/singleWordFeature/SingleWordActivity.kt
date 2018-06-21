@@ -2,17 +2,24 @@ package jrml.supinternet.com.jeredecouvremalangue.singleWordFeature
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
 import jrml.supinternet.com.jeredecouvremalangue.R
 
 class SingleWordActivity : AppCompatActivity() {
     var word: Word? = null
+    var citationDisplayed: Boolean = false
+    var nameText: TextView? = null
+    var descriptionText: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_word)
+        this.setAttribute()
         this.setWord()
         this.updateView()
+        this.setListener()
+        descriptionText?.visibility = View.GONE
     }
 
     private fun setWord() {
@@ -23,11 +30,25 @@ class SingleWordActivity : AppCompatActivity() {
                 "proprement cavalier qui saute à bas de son cheval", descList)
     }
 
-    private fun updateView(){
-        val nameText: TextView = findViewById(R.id.name) as TextView
-        val descriptionText: TextView = findViewById(R.id.description) as TextView
-        nameText.text = word!!.name
-        descriptionText.text = word!!.description
+    private fun setAttribute(){
+        nameText = findViewById<TextView>(R.id.name)
+        descriptionText = findViewById<TextView>(R.id.description)
+    }
 
+    private fun updateView(){
+        nameText?.text = word!!.name
+        descriptionText?.text = word!!.description
+    }
+
+    private fun setListener(){
+        val showCitation = findViewById<TextView>(R.id.some_citation_link)
+        showCitation.setOnClickListener { _ ->
+            if (citationDisplayed){
+                descriptionText?.visibility = View.GONE
+            }else{
+                descriptionText?.visibility = View.VISIBLE
+            }
+            citationDisplayed = !citationDisplayed
+        }
     }
 }
