@@ -1,6 +1,8 @@
 package jrml.supinternet.com.jeredecouvremalangue.singleWordFeature
 
 import android.support.v7.app.AppCompatActivity
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.LinearLayoutManager
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
@@ -11,12 +13,14 @@ class SingleWordActivity : AppCompatActivity() {
     var citationDisplayed: Boolean = false
     var nameText: TextView? = null
     var descriptionText: TextView? = null
+    var citationView: RecyclerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_word)
         this.setAttribute()
         this.setWord()
+        this.setRecyclerView()
         this.updateView()
         this.setListener()
         descriptionText?.visibility = View.GONE
@@ -33,6 +37,25 @@ class SingleWordActivity : AppCompatActivity() {
     private fun setAttribute(){
         nameText = findViewById<TextView>(R.id.name)
         descriptionText = findViewById<TextView>(R.id.description)
+        citationView = findViewById<RecyclerView>(R.id.my_recycler_view)
+    }
+
+    private fun setRecyclerView(){
+        val mRecyclerView = citationView
+
+        // use this setting to improve performance if you know that changes
+        // in content do not change the layout size of the RecyclerView
+        mRecyclerView?.setHasFixedSize(true)
+
+        // use a linear layout manager
+        val mLayoutManager = LinearLayoutManager(this)
+        mRecyclerView?.setLayoutManager(mLayoutManager)
+
+        val arrayString = this.word?.citation
+
+        // specify an adapter (see also next example)
+        val mAdapter = CitationAdapter(arrayString)
+        mRecyclerView?.setAdapter(mAdapter)
     }
 
     private fun updateView(){
