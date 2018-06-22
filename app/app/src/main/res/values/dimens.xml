@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="wordFontSize">35sp</dimen>
+    <dimen name="secondaryLinkFontSize">25sp</dimen>
+    <dimen name="citationMargin">15sp</dimen>
+    <dimen name="singleWordMargin">50dp</dimen>
+</resources>
