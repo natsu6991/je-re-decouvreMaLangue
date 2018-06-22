@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import jrml.supinternet.com.jeredecouvremalangue.R
+import jrml.supinternet.com.jeredecouvremalangue.data.WordService
 
 class SingleWordActivity : AppCompatActivity() {
     private lateinit var word: Word
@@ -27,12 +28,7 @@ class SingleWordActivity : AppCompatActivity() {
     }
 
     private fun setWord() {
-        val descList: ArrayList<String> = arrayListOf("Pardonnez-moi le style désultoire de ma lettre. — (Charles-Augustin Sainte-Beuve, Portraits littéraires, tome 3)",
-                "Ce seront les mêmes promenades dans le parc, les mêmes conversations désultoires avec les fermiers. — (Marguerite Yourcenar, Quoi ? L’Éternité, Gallimard, 1988, page 78)",
-                "Pardonnez-moi le style désultoire de ma lettre. — (Charles-Augustin Sainte-Beuve, Portraits littéraires, tome 3)")
-        this.word = Word("désultoire", "Du latin desultorius," +
-                " cheval qui sert à la voltige, de desultor, celui qui passe d’un objet à un autre, " +
-                "proprement cavalier qui saute à bas de son cheval", descList)
+        this.word = WordService.getWord(1)!!
     }
 
     private fun setAttribute(){
