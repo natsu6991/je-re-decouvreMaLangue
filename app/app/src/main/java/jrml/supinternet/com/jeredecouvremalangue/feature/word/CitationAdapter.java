@@ -1,4 +1,4 @@
-package jrml.supinternet.com.jeredecouvremalangue.singleWordFeature;
+package jrml.supinternet.com.jeredecouvremalangue.feature.word;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;

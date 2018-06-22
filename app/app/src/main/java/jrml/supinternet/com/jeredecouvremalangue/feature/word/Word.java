@@ -1,4 +1,4 @@
-package jrml.supinternet.com.jeredecouvremalangue.singleWordFeature;
+package jrml.supinternet.com.jeredecouvremalangue.feature.word;
 
 import java.util.ArrayList;
 
