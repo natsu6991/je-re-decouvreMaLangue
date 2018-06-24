@@ -1,6 +1,7 @@
 package jrml.supinternet.com.jeredecouvremalangue.feature.word;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import jrml.supinternet.com.jeredecouvremalangue.R;
 public class WordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Word word;
     private String mCitationTextPlaceholder;
+    private boolean isCitationVisible = false;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -30,6 +32,7 @@ public class WordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     public static class MainWordContentViewHolder extends RecyclerView.ViewHolder {
         private TextView nameText;
         private TextView descriptionText;
+        private TextView switchCitation;
 
         // each data item is just a string in this case
         public MainWordContentViewHolder(View v) {
@@ -41,6 +44,7 @@ public class WordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private void setAttribute(View v){
             nameText = v.findViewById(R.id.name);
             descriptionText = v.findViewById(R.id.description);
+            switchCitation = v.findViewById(R.id.some_citation_link);
         }
 
         private void updateView(Word word){
@@ -88,6 +92,13 @@ public class WordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (holder.getItemViewType() == 0){
             MainWordContentViewHolder currentViewHolder = (MainWordContentViewHolder) holder;
             currentViewHolder.updateView(word);
+            currentViewHolder.switchCitation.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("testing", "JS\\ you cliked ");
+                    isCitationVisible = !isCitationVisible;
+                }
+            });
         }else{
             CitationViewHolder currentViewHolder = (CitationViewHolder) holder;
             currentViewHolder.citationText.setText(String.format(mCitationTextPlaceholder, word.getCitation().get(position - 1)));
