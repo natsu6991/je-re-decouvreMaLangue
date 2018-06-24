@@ -7,12 +7,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import jrml.supinternet.com.jeredecouvremalangue.R;
 
 public class WordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private Word word;
     private String mCitationTextPlaceholder;
     private boolean isCitationVisible = false;
+    private ArrayList<CitationViewHolder> mCitationViewHolders = new ArrayList<>();
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -23,6 +26,14 @@ public class WordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         public CitationViewHolder(View v) {
             super(v);
             citationText = v.findViewById(R.id.citationText);
+        }
+
+        public void hideCitations(){
+            this.itemView.setVisibility(View.INVISIBLE);
+        }
+
+        public void showCitations(){
+            this.itemView.setVisibility(View.VISIBLE);
         }
     }
 
@@ -95,13 +106,23 @@ public class WordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             currentViewHolder.switchCitation.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.d("testing", "JS\\ you cliked ");
                     isCitationVisible = !isCitationVisible;
+                    if (isCitationVisible){
+                        for (CitationViewHolder mCitationViewHolder : mCitationViewHolders){
+                            mCitationViewHolder.showCitations();
+                        }
+                    }else{
+                        for (CitationViewHolder mCitationViewHolder : mCitationViewHolders){
+                            mCitationViewHolder.hideCitations();
+                        }
+                    }
                 }
             });
         }else{
             CitationViewHolder currentViewHolder = (CitationViewHolder) holder;
             currentViewHolder.citationText.setText(String.format(mCitationTextPlaceholder, word.getCitation().get(position - 1)));
+            currentViewHolder.hideCitations();
+            mCitationViewHolders.add(currentViewHolder);
         }
     }
 
