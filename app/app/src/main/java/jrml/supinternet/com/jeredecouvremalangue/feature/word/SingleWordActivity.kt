@@ -11,9 +11,8 @@ import jrml.supinternet.com.jeredecouvremalangue.data.WordService
 
 class SingleWordActivity : AppCompatActivity() {
     private lateinit var word: Word
-    private var citationDisplayed = false
-    /*private lateinit var nameText: TextView
-    private lateinit var descriptionText: TextView*/
+    //private var citationDisplayed = false
+
     private lateinit var wordView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +21,6 @@ class SingleWordActivity : AppCompatActivity() {
         this.setAttribute()
         this.setWord()
         this.setRecyclerView()
-        //this.updateView()
         //this.setListener()
     }
 
@@ -31,8 +29,6 @@ class SingleWordActivity : AppCompatActivity() {
     }
 
     private fun setAttribute(){
-        /*nameText = findViewById<TextView>(R.id.name)
-        descriptionText = findViewById<TextView>(R.id.description)*/
         wordView = findViewById<RecyclerView>(R.id.word_recycler_view)
     }
 
@@ -47,17 +43,10 @@ class SingleWordActivity : AppCompatActivity() {
         val mLayoutManager = LinearLayoutManager(this)
         mRecyclerView.layoutManager = mLayoutManager
 
-        val arrayString = this.word.citation
-
         // specify an adapter (see also next example)
-        val mAdapter = WordAdapter(arrayString?.toTypedArray(), getString(R.string.citation_text))
+        val mAdapter = WordAdapter(this.word, getString(R.string.citation_text))
         mRecyclerView.adapter = mAdapter
     }
-
-    /*private fun updateView(){
-        nameText.text = word.name
-        descriptionText.text = word.description
-    }*/
 
     /*private fun setListener(){
         val showCitation = findViewById<TextView>(R.id.some_citation_link)
