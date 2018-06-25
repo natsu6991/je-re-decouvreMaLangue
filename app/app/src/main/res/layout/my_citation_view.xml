@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/citationText"
         android:textStyle="italic"
-        android:layout_marginStart="@dimen/citationMargin"
+        android:layout_marginStart="@dimen/citationMarginStart"
+        android:layout_marginEnd="@dimen/citationMarginEnd"
         android:textColor="@color/citationColor">
 
     </TextView>

@@ -11,10 +11,9 @@ import jrml.supinternet.com.jeredecouvremalangue.data.WordService
 
 class SingleWordActivity : AppCompatActivity() {
     private lateinit var word: Word
-    private var citationDisplayed = false
-    private lateinit var nameText: TextView
-    private lateinit var descriptionText: TextView
-    private lateinit var citationView: RecyclerView
+    //private var citationDisplayed = false
+
+    private lateinit var wordView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,9 +21,7 @@ class SingleWordActivity : AppCompatActivity() {
         this.setAttribute()
         this.setWord()
         this.setRecyclerView()
-        this.updateView()
-        this.setListener()
-        citationView.visibility = View.GONE
+        //this.setListener()
     }
 
     private fun setWord() {
@@ -32,13 +29,11 @@ class SingleWordActivity : AppCompatActivity() {
     }
 
     private fun setAttribute(){
-        nameText = findViewById<TextView>(R.id.name)
-        descriptionText = findViewById<TextView>(R.id.description)
-        citationView = findViewById<RecyclerView>(R.id.my_recycler_view)
+        wordView = findViewById<RecyclerView>(R.id.word_recycler_view)
     }
 
     private fun setRecyclerView(){
-        val mRecyclerView = citationView
+        val mRecyclerView = wordView
 
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
@@ -46,21 +41,14 @@ class SingleWordActivity : AppCompatActivity() {
 
         // use a linear layout manager
         val mLayoutManager = LinearLayoutManager(this)
-        mRecyclerView.setLayoutManager(mLayoutManager)
-
-        val arrayString = this.word.citation
+        mRecyclerView.layoutManager = mLayoutManager
 
         // specify an adapter (see also next example)
-        val mAdapter = CitationAdapter(arrayString?.toTypedArray(), getString(R.string.citation_text))
-        mRecyclerView.setAdapter(mAdapter)
+        val mAdapter = WordAdapter(this.word, getString(R.string.citation_text))
+        mRecyclerView.adapter = mAdapter
     }
 
-    private fun updateView(){
-        nameText.text = word.name
-        descriptionText.text = word.description
-    }
-
-    private fun setListener(){
+    /*private fun setListener(){
         val showCitation = findViewById<TextView>(R.id.some_citation_link)
         showCitation.setOnClickListener { _ ->
             if (citationDisplayed){
@@ -70,5 +58,5 @@ class SingleWordActivity : AppCompatActivity() {
             }
             citationDisplayed = !citationDisplayed
         }
-    }
+    }*/
 }
