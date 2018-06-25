@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,10 +31,19 @@ public class WordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         public void hideCitations(){
+            int resId = R.anim.item_animation_walk_up;
+            Animation animation = AnimationUtils.loadAnimation(this.itemView.getContext(), resId);
+            this.itemView.setAnimation(animation);
+
             this.itemView.setVisibility(View.INVISIBLE);
         }
 
         public void showCitations(){
+
+            int resId = R.anim.item_animation_fall_down;
+            Animation animation = AnimationUtils.loadAnimation(this.itemView.getContext(), resId);
+            this.itemView.setAnimation(animation);
+
             this.itemView.setVisibility(View.VISIBLE);
         }
     }
