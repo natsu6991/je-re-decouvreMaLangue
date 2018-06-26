@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/backWhite"
+    android:padding="5dp"
+    android:layout_marginBottom="5dp">
+    <!--
+    items for a single row of RecyclerView
+    -->
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/listText"
+        android:textSize="@dimen/wordListFontSize"
+        android:gravity="center"
+        android:textColor="@color/citationColor">
+
+    </TextView>
+</LinearLayout>
