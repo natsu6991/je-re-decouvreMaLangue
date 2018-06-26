@@ -37,6 +37,6 @@ public class MyApplication extends Application {
                 Context.ALARM_SERVICE);
         alarms.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 updateTime.getTimeInMillis(),
-                AlarmManager.INTERVAL_HALF_HOUR, recurringNotification);
+                AlarmManager.INTERVAL_DAY, recurringNotification);
     }
 }
