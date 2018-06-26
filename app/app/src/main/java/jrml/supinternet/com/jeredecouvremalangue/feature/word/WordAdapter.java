@@ -38,6 +38,17 @@ public class WordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             this.itemView.setVisibility(View.INVISIBLE);
         }
 
+        public void hideCitations(Boolean withAnim){
+            if (withAnim){
+                int resId = R.anim.item_animation_walk_up;
+                Animation animation = AnimationUtils.loadAnimation(this.itemView.getContext(), resId);
+                this.itemView.setAnimation(animation);
+            }
+
+
+            this.itemView.setVisibility(View.INVISIBLE);
+        }
+
         public void showCitations(){
 
             int resId = R.anim.item_animation_fall_down;
@@ -132,7 +143,7 @@ public class WordAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }else{
             CitationViewHolder currentViewHolder = (CitationViewHolder) holder;
             currentViewHolder.citationText.setText(String.format(mCitationTextPlaceholder, word.getCitation().get(position - 1)));
-            currentViewHolder.hideCitations();
+            currentViewHolder.hideCitations(false);
             mCitationViewHolders.add(currentViewHolder);
         }
     }
