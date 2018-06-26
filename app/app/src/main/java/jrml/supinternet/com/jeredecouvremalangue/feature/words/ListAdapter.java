@@ -49,24 +49,16 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
         // - replace the contents of the view with that element
         holder.listText.setText(mDataset[position]);
 
-        holder.itemView.getId();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (v.getContext(), SingleWordActivity.class);
                 intent.putExtra("listId", position + 1);
-                Log.d("JS\\", "position: " + position);
                 v.getContext().startActivity(intent);
             }
         });
-
     }
 
-    /*public void onClick(View v){
-        Intent intent = new Intent (v.getContext(), SingleWordActivity.class);
-        intent.putExtra("listId", );
-        v.getContext().startActivity(intent);
-    }*/
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {

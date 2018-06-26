@@ -4,11 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.LinearLayoutManager
 import android.os.Bundle
-import android.util.Log
-import android.content.Intent
-import android.view.View
-import android.view.WindowId
-import android.widget.TextView
 import jrml.supinternet.com.jeredecouvremalangue.R
 import jrml.supinternet.com.jeredecouvremalangue.data.WordService
 
@@ -22,7 +17,6 @@ class SingleWordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_word)
         val wordId = intent.getIntExtra("listId", 1000)
-        Log.d("JS\\", "activity wordId: $wordId")
         this.setAttribute()
         this.setWord(wordId)
         this.setRecyclerView()
@@ -53,15 +47,4 @@ class SingleWordActivity : AppCompatActivity() {
         mRecyclerView.adapter = mAdapter
     }
 
-    /*private fun setListener(){
-        val showCitation = findViewById<TextView>(R.id.some_citation_link)
-        showCitation.setOnClickListener { _ ->
-            if (citationDisplayed){
-                citationView.visibility = View.GONE
-            }else{
-                citationView.visibility = View.VISIBLE
-            }
-            citationDisplayed = !citationDisplayed
-        }
-    }*/
 }
