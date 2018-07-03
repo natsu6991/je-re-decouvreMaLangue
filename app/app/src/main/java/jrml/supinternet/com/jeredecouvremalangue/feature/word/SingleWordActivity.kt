@@ -17,6 +17,7 @@ class SingleWordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_word)
         val wordId = intent.getIntExtra("listId", 1000)
+
         this.setAttribute()
         this.setWord(wordId)
         this.setRecyclerView()
