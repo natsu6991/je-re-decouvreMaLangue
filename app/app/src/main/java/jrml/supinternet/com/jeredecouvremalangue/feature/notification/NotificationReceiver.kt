@@ -6,6 +6,7 @@ import android.content.Intent
 import android.support.v4.app.NotificationCompat
 import jrml.supinternet.com.jeredecouvremalangue.R
 import android.app.PendingIntent
+import android.graphics.BitmapFactory
 import jrml.supinternet.com.jeredecouvremalangue.feature.word.SingleWordActivity
 import android.support.v4.app.NotificationManagerCompat
 import jrml.supinternet.com.jeredecouvremalangue.data.WordService
@@ -19,7 +20,9 @@ class NotificationReceiver : BroadcastReceiver() {
         val word = WordService.getWord(wordId)
 
         val mBuilder = NotificationCompat.Builder(context, context.getString(R.string.channel_id))
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                //.setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.mipmap.ic_launcher)
+                .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_launcher))
                 .setContentTitle(word?.name)
                 .setContentText("Connaissez vous ce mot?")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
