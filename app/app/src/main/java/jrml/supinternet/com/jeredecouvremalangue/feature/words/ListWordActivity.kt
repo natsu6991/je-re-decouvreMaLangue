@@ -7,6 +7,7 @@ import android.os.Bundle
 import jrml.supinternet.com.jeredecouvremalangue.R
 import jrml.supinternet.com.jeredecouvremalangue.data.WordService
 import jrml.supinternet.com.jeredecouvremalangue.feature.word.Word
+import java.util.*
 
 class ListWordActivity : AppCompatActivity() {
 

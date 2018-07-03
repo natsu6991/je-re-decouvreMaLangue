@@ -50,8 +50,8 @@ public class MyApplication extends Application {
         // let's grab new stuff at around 11:45 GMT, inexactly
         Calendar updateTime = Calendar.getInstance();
         updateTime.setTimeZone(TimeZone.getTimeZone("GMT"));
-        updateTime.set(Calendar.HOUR_OF_DAY, 11);
-        updateTime.set(Calendar.MINUTE, 5);
+        updateTime.set(Calendar.HOUR_OF_DAY, 9);
+        updateTime.set(Calendar.MINUTE, 27);
 
         Intent notification = new Intent(context, NotificationReceiver.class);
         PendingIntent recurringNotification = PendingIntent.getBroadcast(context,
@@ -60,6 +60,7 @@ public class MyApplication extends Application {
                 Context.ALARM_SERVICE);
         alarms.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 updateTime.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, recurringNotification);
+                AlarmManager.INTERVAL_FIFTEEN_MINUTES, recurringNotification);
+        Log.d("JS\\", "Alarm is set! ");
     }
 }
