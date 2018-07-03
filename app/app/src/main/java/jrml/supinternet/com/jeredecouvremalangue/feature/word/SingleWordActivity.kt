@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.LinearLayoutManager
 import android.os.Bundle
-import android.util.Log
 import jrml.supinternet.com.jeredecouvremalangue.R
 import jrml.supinternet.com.jeredecouvremalangue.data.WordService
 
@@ -18,7 +17,6 @@ class SingleWordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single_word)
         val wordId = intent.getIntExtra("listId", 1000)
-        Log.d("JS\\singleWordActivity", "id is " + wordId)
 
         this.setAttribute()
         this.setWord(wordId)
