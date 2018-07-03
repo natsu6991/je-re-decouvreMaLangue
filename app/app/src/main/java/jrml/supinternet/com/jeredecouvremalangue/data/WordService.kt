@@ -1,6 +1,8 @@
 package jrml.supinternet.com.jeredecouvremalangue.data
 
 import jrml.supinternet.com.jeredecouvremalangue.feature.word.Word
+import java.util.*
+import kotlin.collections.ArrayList
 
 class WordService{
     companion object {
@@ -31,6 +33,12 @@ class WordService{
 
         fun getWord(id: Int): Word?{
             return datas[id]
+        }
+
+        fun getRandomWordId() :Int{
+            val keysAsArray = ArrayList(datas.keys)
+            val r = Random()
+            return keysAsArray.get(r.nextInt(keysAsArray.size))
         }
     }
 }

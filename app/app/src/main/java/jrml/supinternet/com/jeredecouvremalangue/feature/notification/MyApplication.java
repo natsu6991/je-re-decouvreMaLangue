@@ -60,7 +60,7 @@ public class MyApplication extends Application {
                 Context.ALARM_SERVICE);
         alarms.setInexactRepeating(AlarmManager.RTC_WAKEUP,
                 updateTime.getTimeInMillis(),
-                AlarmManager.INTERVAL_DAY, recurringNotification);
+                AlarmManager.INTERVAL_HOUR, recurringNotification);
         Log.d("JS\\", "Alarm is set! ");
     }
 }

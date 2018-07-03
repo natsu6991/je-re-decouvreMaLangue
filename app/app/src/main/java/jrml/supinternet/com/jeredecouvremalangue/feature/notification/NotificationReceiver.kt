@@ -9,21 +9,24 @@ import jrml.supinternet.com.jeredecouvremalangue.R
 import android.app.PendingIntent
 import jrml.supinternet.com.jeredecouvremalangue.feature.word.SingleWordActivity
 import android.support.v4.app.NotificationManagerCompat
-
-
+import jrml.supinternet.com.jeredecouvremalangue.data.WordService
+import jrml.supinternet.com.jeredecouvremalangue.feature.word.Word
 
 
 class NotificationReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        Log.d("JS\\", "recurring notification, requesting notification service")
+        val wordId = WordService.getRandomWordId()
+        val pendingIntent = getActivityIntent(context, wordId)
+        val word = WordService.getWord(wordId)
 
-        val pendingIntent = getActivityIntent(context)
+        //val testwordId = pendingIntent.getIntExtra("listId", 1000)
+        Log.d("JS\\singleWordActivity", "id is " + wordId)
 
         val mBuilder = NotificationCompat.Builder(context, context.getString(R.string.channel_id))
                 .setSmallIcon(R.drawable.ic_launcher_background)
-                .setContentTitle("test")
-                .setContentText("toto")
+                .setContentTitle(word?.name)
+                .setContentText("Connaissez vous ce mot?")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 // Set the intent that will fire when the user taps the notification
                 .setContentIntent(pendingIntent)
@@ -37,14 +40,14 @@ class NotificationReceiver : BroadcastReceiver() {
 
     }
 
-    private fun getActivityIntent(context: Context) :PendingIntent{
+    private fun getActivityIntent(context: Context, wordId: Int) :PendingIntent{
         // Create an explicit intent for an Activity in your app
         val intent = Intent(context, SingleWordActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        //todo call the word service to get a random word id!
-        intent.putExtra("listId", 1)
-        val pendingIntent = PendingIntent.getActivity(context, 0, intent, 0)
-        return pendingIntent
+        Log.d("JS\\notifReceiver", "id is " + wordId)
+
+        intent.putExtra("listId", wordId)
+        return PendingIntent.getActivity(context, 0, intent, 0)
 
     }
 }
