@@ -5,7 +5,8 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.LinearLayoutManager
 import android.os.Bundle
 import jrml.supinternet.com.jeredecouvremalangue.R
-import jrml.supinternet.com.jeredecouvremalangue.data.WordService
+import jrml.supinternet.com.jeredecouvremalangue.data.ListWordService
+import jrml.supinternet.com.jeredecouvremalangue.data.HistoryService
 
 class SingleWordActivity : AppCompatActivity() {
     private lateinit var word: Word
@@ -25,7 +26,8 @@ class SingleWordActivity : AppCompatActivity() {
     }
 
     private fun setWord(wordId: Int) {
-        this.word = WordService.getWord(wordId)!!
+        this.word = ListWordService.getWord(wordId)!!
+        HistoryService.addConsultedWordId(wordId)
     }
 
     private fun setAttribute(){
