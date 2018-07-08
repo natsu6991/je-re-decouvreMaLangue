@@ -10,9 +10,10 @@ import android.widget.TextView;
 
 import jrml.supinternet.com.jeredecouvremalangue.R;
 import jrml.supinternet.com.jeredecouvremalangue.feature.word.SingleWordActivity;
+import jrml.supinternet.com.jeredecouvremalangue.feature.word.Word;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
-    private String[] mDataset;
+    private Word[] mDataset;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -27,7 +28,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public ListAdapter(String[] myDataset) {
+    public ListAdapter(Word[] myDataset) {
         mDataset = myDataset;
     }
 
@@ -47,13 +48,13 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, final int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.listText.setText(mDataset[position]);
+        holder.listText.setText(mDataset[position].getName());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent (v.getContext(), SingleWordActivity.class);
-                intent.putExtra("listId", position + 1);
+                intent.putExtra("listId", mDataset[position].getId());
                 v.getContext().startActivity(intent);
             }
         });

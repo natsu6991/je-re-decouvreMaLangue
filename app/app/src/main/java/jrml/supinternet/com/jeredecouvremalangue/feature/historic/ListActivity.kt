@@ -9,11 +9,10 @@ import jrml.supinternet.com.jeredecouvremalangue.data.ListWordService
 import jrml.supinternet.com.jeredecouvremalangue.data.WordService
 import jrml.supinternet.com.jeredecouvremalangue.feature.word.Word
 import jrml.supinternet.com.jeredecouvremalangue.feature.words.ListAdapter
-import java.util.HashMap
 
 abstract class ListActivity : AppCompatActivity() {
 
-    private lateinit var words: HashMap<Int, Word>
+    private lateinit var words: ArrayList<Word>
     private lateinit var listView: RecyclerView
     protected lateinit var wordService: WordService
 
@@ -40,12 +39,8 @@ abstract class ListActivity : AppCompatActivity() {
         val mRecyclerView = listView
         mRecyclerView.setHasFixedSize(true)
         val mLayoutManager = LinearLayoutManager(this)
-        mRecyclerView.setLayoutManager(mLayoutManager)
-        var arrayString: Array<String> = arrayOf<String>()
-        for (word: Word in this.words.values){
-            arrayString += word.name
-        }
-        val mAdapter = ListAdapter(arrayString)
-        mRecyclerView.setAdapter(mAdapter)
+        mRecyclerView.layoutManager = mLayoutManager
+        val mAdapter = ListAdapter(this.words.toTypedArray())
+        mRecyclerView.adapter = mAdapter
     }
 }

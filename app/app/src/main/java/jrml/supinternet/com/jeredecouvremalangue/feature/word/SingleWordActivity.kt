@@ -27,7 +27,7 @@ class SingleWordActivity : AppCompatActivity() {
 
     private fun setWord(wordId: Int) {
         this.word = ListWordService.getWord(wordId)!!
-        HistoryService.addConsultedWordId(wordId)
+        HistoryService.addConsultedWord(this.word)
     }
 
     private fun setAttribute(){

@@ -15,15 +15,14 @@ import jrml.supinternet.com.jeredecouvremalangue.data.ListWordService
 class NotificationReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        val wordId = ListWordService.getRandomWordId()
-        val pendingIntent = getActivityIntent(context, wordId)
-        val word = ListWordService.getWord(wordId)
+        val word = ListWordService.getRandomWord()
+        val pendingIntent = getActivityIntent(context, word.id)
 
         val mBuilder = NotificationCompat.Builder(context, context.getString(R.string.channel_id))
                 //.setSmallIcon(R.drawable.ic_launcher_background)
                 .setSmallIcon(R.mipmap.ic_launcher)
                 .setLargeIcon(BitmapFactory.decodeResource(context.getResources(),R.mipmap.ic_launcher))
-                .setContentTitle(word?.name)
+                .setContentTitle(word.name)
                 .setContentText("Connaissez vous ce mot?")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 // Set the intent that will fire when the user taps the notification
