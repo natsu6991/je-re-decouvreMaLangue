@@ -40,23 +40,6 @@ abstract class ListActivity : AppCompatActivity() {
         listView = findViewById<RecyclerView>(R.id.my_recycler_word_view)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.main_items, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.main -> {
-                val intent = Intent(this, ListWordActivity::class.java)
-                this.startActivity(intent)
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
-
-        return true
-    }
-
     private fun setRecyclerView(){
         val mRecyclerView = listView
         mRecyclerView.setHasFixedSize(true)
