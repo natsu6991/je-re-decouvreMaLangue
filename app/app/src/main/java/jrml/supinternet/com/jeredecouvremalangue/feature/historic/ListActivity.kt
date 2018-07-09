@@ -1,14 +1,18 @@
 package jrml.supinternet.com.jeredecouvremalangue.feature.historic
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.Menu
+import android.view.MenuItem
 import jrml.supinternet.com.jeredecouvremalangue.R
 import jrml.supinternet.com.jeredecouvremalangue.data.ListWordService
 import jrml.supinternet.com.jeredecouvremalangue.data.WordService
 import jrml.supinternet.com.jeredecouvremalangue.feature.word.Word
 import jrml.supinternet.com.jeredecouvremalangue.feature.words.ListAdapter
+import jrml.supinternet.com.jeredecouvremalangue.feature.words.ListWordActivity
 
 abstract class ListActivity : AppCompatActivity() {
 
@@ -23,6 +27,7 @@ abstract class ListActivity : AppCompatActivity() {
         this.setService()
         this.setWord()
         this.setRecyclerView()
+        this.setSupportActionBar(findViewById(R.id.my_toolbar))
     }
 
     protected abstract fun setService()
@@ -33,6 +38,23 @@ abstract class ListActivity : AppCompatActivity() {
 
     private fun setAttribute(){
         listView = findViewById<RecyclerView>(R.id.my_recycler_word_view)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.main_items, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.main -> {
+                val intent = Intent(this, ListWordActivity::class.java)
+                this.startActivity(intent)
+            }
+            else -> return super.onOptionsItemSelected(item)
+        }
+
+        return true
     }
 
     private fun setRecyclerView(){

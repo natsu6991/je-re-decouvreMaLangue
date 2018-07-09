@@ -7,4 +7,6 @@
     <string name="channel_name">Notifications de nouveaux mots</string>
     <string name="channel_description">Channel pour la notification quotidienne avec un mot littéraire ou inconnu de la langue française</string>
     <string name="channel_id">Mon premier chan de notifications</string>
+    <string name="main">Go to main page</string>
+    <string name="history">Go to history page</string>
 </resources>
